@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单验证</title>
+	</head>
+	<body>
+		<form action="http://www.baidu.com" onsubmit="return check()">
+			<label>用户名</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=text name="username" id="username" ></input>
+			<span id="userError" style="color:red; font-size :12px"></span>
+			<br>
+			<br>
+			<label>邮箱</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=text name="email" id="email"></input>
+			<span id="emailError" style="color:red; font-size :12px"></span>
+			<br>
+			<br>
+			<label>密码</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=password name="pwd" id="pwd"></input>
+			<br>
+			<br>
+			<label>确认密码</label>&nbsp;<input type=password id="confirmPwd"></input>
+			<span id="pwdError" style="color:red; font-size :12px"></span>
+			<br>
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="submit" value="登录" id="btn"></input>
+		</form>
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				document.getElementById("username").onblur=function(){
+					var user=document.getElementById("username").value;
+					var userRegExp=/^[a-zA-Z0-9]{6,14}$/;
+					var ok=userRegExp.test(user);
+					if(!ok){
+						document.getElementById("userError").innerText="用户名不合法";
+					}else{
+						document.getElementById("userError").innerText="";
+					}
+				}
+				document.getElementById("username").onfocus=function(){
+					var user=document.getElementById("username").value;
+					var userRegExp=/^[a-zA-Z0-9]{6,14}$/;
+					var ok=userRegExp.test(user);
+					if(!ok){
+						document.getElementById("username").value="";
+						document.getElementById("userError").innerText="";
+					}else{
+						document.getElementById("userError").innerText="";
+					}
+				}
+				document.getElementById("email").onblur=function(){
+					var email =document.getElementById("email").value;
+					var emailRegExp=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+					var ok=emailRegExp.test(email);
+					if(!ok){
+						document.getElementById("emailError").innerText="邮箱不合法";
+					}else{
+						document.getElementById("emailError").innerText="";
+					}
+				}
+				document.getElementById("email").onfocus=function(){
+					var email =document.getElementById("email").value;
+					var emailRegExp=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+					var ok=emailRegExp.test(email);
+					if(!ok){
+						document.getElementById("email").value="";
+						document.getElementById("emailError").innerText="";
+					}else{
+						document.getElementById("emailError").innerText="";
+					}
+		        }
+				document.getElementById("confirmPwd").onblur=function(){
+					var email =document.getElementById("pwd").value;
+					var confirmEmail =document.getElementById("confirmPwd").value;
+					if(confirmEmail!=email){
+						document.getElementById("pwdError").innerText="密码不符";
+					}else{
+						document.getElementById("pwdError").innerText="";
+					}
+				}		
+		    }
+			
+			function check(){
+				if(document.getElementById("userError").innerText==""&&document.getElementById("emailError").innerText==""&&document.getElementById("pwdError").innerText==""){
+					return true;	
+				}else{
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>
