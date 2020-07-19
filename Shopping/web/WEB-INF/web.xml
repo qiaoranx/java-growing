@@ -19,4 +19,7 @@
         <servlet-name>TwoServlet</servlet-name>
         <url-pattern>/two</url-pattern>
     </servlet-mapping>
+    <session-config>
+        <session-timeout>5</session-timeout>
+    </session-config>
 </web-app>

@@ -1,0 +1,15 @@
+1.建表 用户信息表
+userId int primary key auto_increment
+userName varchar(50)
+password varchar(50)
+sex char(1)
+email varchar(50)
+
+插入信息时不给id赋值将自动i++
+
+2.创建实体类
+
+3.工具类 JBDC工具类
+
+4.导入jar包
+
