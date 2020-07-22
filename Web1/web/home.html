@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>主页</title>
+</head>
+<body>
+<style>
+    #header {
+        height: 80px;
+        background-color:black;
+        color:white;
+        text-align:center;
+        padding:5px;
+    }
+    #nav {
+        line-height:60px;
+        background-color:#eeeeee;
+        height:600px;
+        width:200px;
+        float:left;
+        padding:5px;
+    }
+    #section {
+        width:600px;
+        float:left;
+        padding:10px;
+    }
+
+    #userManager {
+      visibility: hidden;
+      /*z-index: 1;*/
+      /*position: absolute;*/
+    }
+
+</style>
+
+<div id="header" >
+    <input type="button" value="个人信息修改" >
+    <input type="button" value="退出" >
+</div>
+<div id="nav">
+    <ul>
+    <li><input type="button" value="系统管理" id="sysManager">
+        <ol id="userManager">
+            <li>
+                <input type="button" value="用户管理">
+            </li>
+        </ol>
+    </li>
+    </ul>
+</div>
+
+<div id="section">
+    <div id="homePage">
+        <iframe align="bottom" width="1200" height="400"
+                 src="homePage.jpg"
+                 frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no">
+        </iframe>
+    </div>
+
+
+
+</div>
+
+<script type="text/javascript">
+    var isVis=false;
+    window.onload=function(){
+        document.getElementById("sysManager").onclick=function(){
+            isVis=!isVis;
+            if(isVis){
+                document.getElementById("userManager").style.visibility="visible";
+            }else{
+                document.getElementById("userManager").style.visibility="hidden";
+            }
+
+        }
+
+        document.getElementById("userManager").onclick=function(){
+            window.location.href="http://localhost:80/EGOV/addUser.html";
+        }
+    }
+</script>
+
+
+</body>
+</html>
