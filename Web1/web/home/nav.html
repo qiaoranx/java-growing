@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <style>
+        #userManager {
+            visibility: hidden;
+            /*z-index: 1;*/
+            /*position: absolute;*/
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li><input type="button" value="系统管理" id="sysManager"><br/>
+        <ol id="userManager">
+            <li>
+                <a target="section" href="http://localhost:80/EGOV/pageQuery?pageNum=1">用户管理</a>
+            </li>
+        </ol>
+    </li>
+</ul>
+
+<script type="text/javascript">
+    var isVis=false;
+    window.onload=function(){
+        document.getElementById("sysManager").onclick=function(){
+            isVis=!isVis;
+            if(isVis){
+                document.getElementById("userManager").style.visibility="visible";
+            }else{
+                document.getElementById("userManager").style.visibility="hidden";
+            }
+
+        }
+
+        // document.getElementById("userManager").onclick=function(){
+        //     // window.location.href="http://localhost:80/EGOV/pageQuery?pageNum=1";
+        //     window.location.href="../sig.png";
+        //     window.location.href.target="section";
+        // }
+    }
+</script>
+</body>
+</html>

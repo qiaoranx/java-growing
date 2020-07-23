@@ -1,0 +1,30 @@
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>用户查询</title>
+</head>
+<body>
+<div>
+    <input type="button" id="addUser" value="添加用户">
+</div>
+<table border="1">
+    <tr>
+        <td>编号</td>
+        <td>用户代码</td>
+        <td>用户名</td>
+        <td>用户机构</td>
+    </tr>
+</table>
+<script type="text/javascript">
+    window.onload=function () {
+        document.getElementById("addUser").onclick=function () {
+            window.location.href="http://localhost:80/EGOV/addUser.html";
+            // window.location.href.target="section";
+        }
+
+    }
+</script>
+
+</body>
+</html>

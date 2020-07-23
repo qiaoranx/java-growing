@@ -26,9 +26,9 @@ public class AddUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out=response.getWriter();
         if(res==1){
-            out.print("<font style='color:red;font-size:20'>添加成功</font>");
+            request.getRequestDispatcher("/pageQuery").forward(request,response);
         }else{
-            out.print("<font style='color:red;font-size:20'>添加失败</font>");
+            request.getRequestDispatcher("/addUserError.html").forward(request,response);
         }
     }
 }

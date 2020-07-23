@@ -11,6 +11,14 @@
         <servlet-name>AddUserServlet</servlet-name>
         <servlet-class>com.company.controller.AddUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PageQueryServlet</servlet-name>
+        <servlet-class>com.company.controller.PageQueryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PageQueryServlet</servlet-name>
+        <url-pattern>/pageQuery</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
