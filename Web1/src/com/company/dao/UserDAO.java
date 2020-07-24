@@ -159,4 +159,34 @@ public class UserDAO {
         }
         return totalcount;
     }
+
+    /**
+     * 根据usercode查询user
+     * @param usercode
+     * @return
+     */
+    public User selectUser(String usercode){
+        Connection con=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        User user=new User();
+        String sql="select * from t_user where usercode=?";
+        try {
+            con=jdbcUtil.getConnection();
+            ps= con.prepareStatement(sql);
+            ps.setString(1,usercode);
+            rs= ps.executeQuery();
+            if(rs.next()){
+                user.setUserName(rs.getString("username"));
+                user.setUserPwd(rs.getString("userpwd"));
+                user.setOrgType(rs.getString("orgtype"));
+                user.setUserCode(rs.getString("usercode"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            jdbcUtil.close(con,ps,rs);
+        }
+           return user;
+    }
 }

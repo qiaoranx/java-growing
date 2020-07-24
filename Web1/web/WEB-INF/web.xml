@@ -15,6 +15,14 @@
         <servlet-name>PageQueryServlet</servlet-name>
         <servlet-class>com.company.controller.PageQueryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GoUpdateServlet</servlet-name>
+        <servlet-class>com.company.controller.GoUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GoUpdateServlet</servlet-name>
+        <url-pattern>/goUpdate</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PageQueryServlet</servlet-name>
         <url-pattern>/pageQuery</url-pattern>
