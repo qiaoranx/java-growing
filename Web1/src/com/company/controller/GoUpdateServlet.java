@@ -12,9 +12,11 @@ import java.io.IOException;
 public class GoUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             String usercode=request.getParameter("usercheck");
+            String pageNum=request.getParameter("pageNum");
             UserDAO dao=new UserDAO();
             User user= dao.selectUser(usercode);
             request.setAttribute("user",user);
+            request.setAttribute("pageNum",pageNum);
             request.getRequestDispatcher("/updateUser.jsp").forward(request,response);
     }
 

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     User user=(User)request.getAttribute("user");
-    System.out.println(user.getOrgType());
+    String pageNum=(String) request.getAttribute("pageNum");
 %>
 <html>
 <head>
@@ -16,8 +16,8 @@
 </head>
 <body>
 <div id="updateUser">
-    <form action="/EGOV/updateUser" target="section">
-        用户代码：<input type="text" name="usercode" value="<%=user.getUserCode()%>" disabled="true"><br/>
+    <form action="/EGOV/updateUser?pageNum=<%=pageNum%>" method="post" target="section">
+        用户代码：<input type="text" name="usercode" value="<%=user.getUserCode()%>" readonly="true"><br/>
         用户姓名：<input type="text" name="username" value="<%=user.getUserName()%>"><br/>
         用户密码：<input type="password" name="userpwd" value="<%=user.getUserPwd()%>"><br/>
         机构类型：<select name="orgType" >

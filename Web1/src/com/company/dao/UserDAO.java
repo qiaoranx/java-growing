@@ -2,7 +2,6 @@ package com.company.dao;
 
 import com.company.entity.User;
 import com.company.util.JDBCUtil;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -112,7 +111,7 @@ public class UserDAO {
         Connection con=null;
         PreparedStatement ps=null;
         ResultSet rs=null;
-        List<User> userList=new ArrayList<User>();
+        List<User> userList=new ArrayList<>();
         try {
             con=jdbcUtil.getConnection();
             String sql="select * from t_user order by regdate desc limit ? offset ?";
@@ -189,4 +188,78 @@ public class UserDAO {
         }
            return user;
     }
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    public int updateUser(User user){
+        Connection con=null;
+        PreparedStatement ps=null;
+        int res=0;
+        try {
+            con= jdbcUtil.getConnection();
+            String sql="update t_user set username=?,userpwd=?,orgtype=? where usercode=?";
+            ps= con.prepareStatement(sql);
+            ps.setString(1, user.getUserName());
+            ps.setString(2, user.getUserPwd());
+            ps.setString(3, user.getOrgType());
+            ps.setString(4, user.getUserCode());
+            res=ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            jdbcUtil.close(con,ps);
+        }
+        return res;
+    }
+
+    /**
+     * 删除用户
+     * @param usercodes
+     * @return
+     */
+    public int deleteUser(String[] usercodes){
+        Connection con=null;
+        PreparedStatement ps=null;
+        int res=0;
+        try {
+
+            con= jdbcUtil.getConnection();
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(2);
+            //开始事务
+            String sql="delete from t_user where usercode = ?" ;
+            ps= con.prepareStatement(sql);
+            //进程之间的交互耗时
+            //批处理
+            for (int i = 0; i <usercodes.length ; i++) {
+                ps.setString(1,usercodes[i]);
+//                ps.executeUpdate();
+                ps.addBatch();
+                res++;
+            }
+            ps.executeBatch();
+            con.commit();
+            //结束事务
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                con.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }finally {
+            try {
+                con.setAutoCommit(true);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            jdbcUtil.close(con,ps);
+        }
+        return res;
+    }
+
 }
