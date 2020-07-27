@@ -31,6 +31,22 @@
         <servlet-name>DeleteUserServlet</servlet-name>
         <servlet-class>com.company.controller.DeleteUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.company.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InvSaveServlet</servlet-name>
+        <servlet-class>com.company.controller.InvSaveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InvSaveServlet</servlet-name>
+        <url-pattern>/invsave</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteUserServlet</servlet-name>
         <url-pattern>/deleteUser</url-pattern>
@@ -60,7 +76,7 @@
         <url-pattern>/addUser</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>/login.html</welcome-file>
+        <welcome-file>/login.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

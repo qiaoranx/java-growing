@@ -1,19 +1,23 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<%--
+  Created by IntelliJ IDEA.
+  User: xiang
+  Date: 2020/7/27
+  Time: 18:21
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>Title</title>
 </head>
 <body>
-<body>
 <ul>
     <li><input type="button" value="登记管理" id="regManager"><br/><br/>
-    <input type="button" value="基本信息登记" id="msgManager" style="visibility: hidden"><br/><br/>
+        <input type="button" value="基本信息登记" id="msgManager" style="visibility: hidden"><br/><br/>
         <ol id="msgReg" style="visibility: hidden">
             <li><input type="button" value="企业投资人信息登记" id="invReg">
                 <ol id="invInp" style="visibility: hidden">
-                    <a target="section" href="http://localhost:80/EGOV/pageQuery?pageNum=1">录入</a>
+                    <a target="section" href="http://localhost:80/EGOV/invest/invMsgReg.jsp">录入</a>
                 </ol>
             </li>
             <li><input type="button" value="企业外汇登记" id="outReg">

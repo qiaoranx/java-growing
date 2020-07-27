@@ -15,7 +15,7 @@
     List<User> userList=pageUser.getPageList();
     int totalCount=pageUser.getTotalCount();
     int totalPage=pageUser.getTotalPage();
-    int curPage=pageUser.getCurPage() ;
+    int curPage=pageUser.getCurPage();
 %>
 <html>
 <head>
@@ -121,7 +121,7 @@
 <script type="text/javascript">
     window.onload=function () {
         document.getElementById("addUser").onclick=function () {
-            window.location.href="http://localhost:80/EGOV/addUser.html";
+            window.location.href="http://localhost:80/EGOV/addUser.jsp";
             window.location.href.target="section";
         }
 
@@ -145,7 +145,7 @@
             <td><%=++i%></td>
             <td><%=user.getUserCode()%> </td>
             <td><%=user.getUserName()%></td>
-            <td><%=PropertyUtil.proUtil(user.getOrgType()).replace("\"","")%></td>
+            <td><%=PropertyUtil.proUtil(user.getOrgType())%></td>
         </tr>
         <%
             }

@@ -1,6 +1,7 @@
 package com.company.entity;
 
 import com.company.util.Const;
+import com.company.util.PropertyUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,13 +20,11 @@ public class User {
     }
 
     public User(String userCode, String userName, String userPwd, String orgType) {
-        SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
-        sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
         this.userCode = userCode;
         this.userName = userName;
         this.userPwd = userPwd;
         this.orgType = orgType;
-        this.regDate =sdf.format(new Date());
+        this.regDate = PropertyUtil.timeUtil("yyyy-MM-dd HH:mm:ss");
     }
 
     public String getUserCode() {

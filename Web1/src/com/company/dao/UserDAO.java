@@ -42,6 +42,33 @@ public class UserDAO {
     }
 
     /**
+     * 判断用户代码唯一性
+     * @param usercode
+     * @return
+     */
+    public int verifyUsercode(String usercode){
+        Connection con=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        int res=0;
+        try {
+           con= jdbcUtil.getConnection();
+           String sql="select * from t_user where usercode=?";
+           ps= con.prepareStatement(sql);
+           ps.setString(1,usercode);
+           rs= ps.executeQuery();
+           while (rs.next()){
+               res++;
+           }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            jdbcUtil.close(con,ps,rs);
+        }
+        return res;
+    }
+
+    /**
      * 登录验证
      * @param user
      * @return
@@ -53,9 +80,10 @@ public class UserDAO {
         int res=0;
         try {
             con= jdbcUtil.getConnection();
-            String sql="select * from t_user where username=? and userpwd=? and orgtype=?";
+            //where子句先查第一个条件（mysql）
+            String sql="select * from t_user where usercode=? and userpwd=? and orgtype=?";
             ps= con.prepareStatement(sql);
-            ps.setString(1, user.getUserName());
+            ps.setString(1, user.getUserCode());
             ps.setString(2, user.getUserPwd());
             ps.setString(3, user.getOrgType());
             rs=ps.executeQuery();
@@ -70,6 +98,7 @@ public class UserDAO {
         }
         return res;
     }
+
 
     /**
      * 分页逻辑查询
