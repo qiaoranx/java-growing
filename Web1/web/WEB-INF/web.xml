@@ -39,6 +39,22 @@
         <servlet-name>InvSaveServlet</servlet-name>
         <servlet-class>com.company.controller.InvSaveServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QueryInvServlet</servlet-name>
+        <servlet-class>com.company.controller.QueryInvServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GoInvDetailServlet</servlet-name>
+        <servlet-class>com.company.controller.GoInvDetailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GoInvDetailServlet</servlet-name>
+        <url-pattern>/goInvDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QueryInvServlet</servlet-name>
+        <url-pattern>/queryInv</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>InvSaveServlet</servlet-name>
         <url-pattern>/invsave</url-pattern>
