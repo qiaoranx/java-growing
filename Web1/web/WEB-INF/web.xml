@@ -51,6 +51,14 @@
         <servlet-name>QueryOrgServlet</servlet-name>
         <servlet-class>com.company.controller.QueryOrgServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveOrgServlet</servlet-name>
+        <servlet-class>com.company.controller.SaveOrgServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SaveOrgServlet</servlet-name>
+        <url-pattern>/saveOrg</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QueryOrgServlet</servlet-name>
         <url-pattern>/queryOrg</url-pattern>
