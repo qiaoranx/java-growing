@@ -47,6 +47,14 @@
         <servlet-name>GoInvDetailServlet</servlet-name>
         <servlet-class>com.company.controller.GoInvDetailServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QueryOrgServlet</servlet-name>
+        <servlet-class>com.company.controller.QueryOrgServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QueryOrgServlet</servlet-name>
+        <url-pattern>/queryOrg</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GoInvDetailServlet</servlet-name>
         <url-pattern>/goInvDetail</url-pattern>

@@ -9,7 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-     List<Investor> invLst=(List<Investor>)request.getAttribute("invLst");
+    List<Investor> invLst=(List<Investor>)request.getAttribute("invLst");
 %>
 <html>
 <head>
@@ -17,15 +17,16 @@
 </head>
 <body>
 <img>
-<form action="/EGOV/queryInv?gowhere=1" method="post" target="section" name="queryForm">
-<%--三元运算解决查询后丢失搜索条件的问题--%>
+<form  name="queryForm">
+    <%--三元运算解决查询后丢失搜索条件的问题--%>
     投资人登记编号：<input type="text" id="invRegNum" name="invregnum" value=<%=request.getParameter("invregnum")==null?"":request.getParameter("invregnum")%>><br/>
     投资人名称：<input type="text" id="invname" name="invname"><br/>
     登记日期：<input type="text" id="regdate1" name="regdate1">
     <img src="/EGOV/img/calendar.png" width="20" height="20"/>
     ~<input type="text" id="regdate2" name="regdate2">
     <img src="/EGOV/img/calendar.png" width="20" height="20"/><br/>
-    <input type="button" onclick="GoinvAdd()" value="新增"><input type="button" onclick="QueryInv()"  value="查询"><input type="button" value="清除">
+        <input type="button" onclick="QueryInv()"  value="查询">
+        <input type="button" value="清除">
 </form>
 <table border="1">
     <tr>
@@ -33,7 +34,6 @@
         <td>投资人登记编号</td>
         <td>投资人名称</td>
         <td>登记日期</td>
-        <td>国别</td>
         <td>经办人</td>
     </tr>
     <tbody id="tableBody" >
@@ -44,10 +44,9 @@
     %>
     <tr>
         <td><%=++i%></td>
-        <td>GB<span style="cursor: hand" onclick="GoInvDetail(this.innerText)"><%=investor.getInvregnum()%></span></td>
+        <td>GB<span style="cursor: hand" onclick="window.opener.addNewLine('<%=investor.getInvregnum()%>','<%=investor.getInvname()%>','<%=PropertyUtil.proUtil(investor.getCty()) %>')"><%=investor.getInvregnum()%></span></td>
         <td><%=investor.getInvname()%></td>
         <td><%=investor.getRegdate()%></td>
-        <td><%=PropertyUtil.proUtil(investor.getCty())%></td>
         <td><%=investor.getUsername()%></td>
     </tr>
     <%
@@ -60,21 +59,11 @@
 </body>
 </html>
 <script type="text/javascript">
-    function GoinvAdd() {
-        window.location.href = "http://localhost:80/EGOV/invest/invAdd.jsp";
-        window.location.href.target = "section";
-    }
-
     function QueryInv() {
-        document.forms["queryForm"].action="/EGOV/queryInv";
+        document.forms["queryForm"].action="/EGOV/queryInv?gowhere=2";
         document.forms["queryForm"].method="post";
         document.forms["queryForm"].submit();
         document.forms["queryForm"].target="section";
-    }
-
-    function GoInvDetail(invregnum) {
-        window.location.href = "http://localhost:80/EGOV/goInvDetail?invregnum="+invregnum;
-        window.location.href.target = "section";
     }
 
 

@@ -11,15 +11,11 @@ public class LoginFilter implements Filter {
        //访问任何一个jsp文件，服务器会自动创建session
         HttpServletRequest req=(HttpServletRequest)servletRequest;
         HttpSession session= req.getSession(false);
-        System.out.println(req.getRequestURI());
         if(req.getRequestURI().contains("login")||req.getRequestURI().equals("/EGOV/")){
-            System.out.println("登录");
             filterChain.doFilter(servletRequest,servletResponse);
         }else if(session!=null&&session.getAttribute("user")!=null){
-            System.out.println("验证通过");
             filterChain.doFilter(servletRequest,servletResponse);
         }else{
-            System.out.println("失败");
             req.getRequestDispatcher("/").forward(servletRequest,servletResponse);
         }
     }

@@ -22,7 +22,7 @@
             </li>
             <li><input type="button" value="企业外汇登记" id="outReg">
                 <ol id="outInp" style="visibility: hidden">
-                    <a target="section" href="http://localhost:80/EGOV/pageQuery?pageNum=1">录入</a>
+                    <a target="section" href="http://localhost:80/EGOV/invest/enterprise.jsp">录入</a>
                 </ol>
             </li>
         </ol>
