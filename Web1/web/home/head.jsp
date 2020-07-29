@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
    User user=(User)session.getAttribute("user");
-   String usercode=user.getUserCode();
-   String orgtype=PropertyUtil.proUtil(user.getOrgType());
+   String usercode=user.getUsercode();
+   String orgtype=PropertyUtil.proUtil(user.getOrgtype());
 %>
 <html>
 <head>

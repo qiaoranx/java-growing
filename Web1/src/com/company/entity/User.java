@@ -7,64 +7,64 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class User {
-    private String userCode;
-    private String userName;
-    private String userPwd;
-    private String orgType;
-    private String regDate;
+    private String usercode;
+    private String username;
+    private String userpwd;
+    private String orgtype;
+    private String regdate;
 
     public User() {
         SimpleDateFormat sdf = new SimpleDateFormat();
         sdf.applyPattern(Const.DATE_FORMAT_ALL);
-        this.regDate =sdf.format(new Date());
+        this.regdate =sdf.format(new Date());
     }
 
     public User(String userCode, String userName, String userPwd, String orgType) {
-        this.userCode = userCode;
-        this.userName = userName;
-        this.userPwd = userPwd;
-        this.orgType = orgType;
-        this.regDate = PropertyUtil.timeUtil("yyyy-MM-dd HH:mm:ss");
+        this.usercode = userCode;
+        this.username = userName;
+        this.userpwd = userPwd;
+        this.orgtype = orgType;
+        this.regdate = PropertyUtil.timeUtil("yyyy-MM-dd HH:mm:ss");
     }
 
-    public String getUserCode() {
-        return userCode;
+    public String getUsercode() {
+        return usercode;
     }
 
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
+    public void setUsercode(String userCode) {
+        this.usercode = userCode;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
-    public String getUserPwd() {
-        return userPwd;
+    public String getUserpwd() {
+        return userpwd;
     }
 
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
+    public void setUserpwd(String userPwd) {
+        this.userpwd = userPwd;
     }
 
-    public String getOrgType() {
-        return orgType;
+    public String getOrgtype() {
+        return orgtype;
     }
 
-    public void setOrgType(String orgType) {
-        this.orgType = orgType;
+    public void setOrgtype(String orgType) {
+        this.orgtype = orgType;
     }
 
-    public String getRegDate() {
-        return regDate;
+    public String getRegdate() {
+        return regdate;
     }
 
-    public void setRegDate(String regDate) {
-        this.regDate = regDate;
+    public void setRegdate(String regDate) {
+        this.regdate = regDate;
     }
 
 

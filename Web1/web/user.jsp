@@ -141,11 +141,11 @@
             for (User user : userList) {
         %>
         <tr>
-            <td><input type="checkbox" name="usercheck" value="<%=user.getUserCode()%>" onclick="checkboxState()" ></td>
+            <td><input type="checkbox" name="usercheck" value="<%=user.getUsercode()%>" onclick="checkboxState()" ></td>
             <td><%=++i%></td>
-            <td><%=user.getUserCode()%> </td>
-            <td><%=user.getUserName()%></td>
-            <td><%=PropertyUtil.proUtil(user.getOrgType())%></td>
+            <td><%=user.getUsercode()%> </td>
+            <td><%=user.getUsername()%></td>
+            <td><%=PropertyUtil.proUtil(user.getOrgtype())%></td>
         </tr>
         <%
             }

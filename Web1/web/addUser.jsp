@@ -27,7 +27,7 @@
          用户代码：<input type="text" name="usercode" id="usercode" onblur="verifyUsercode(this.value)"><span id="usercodeMsg"></span><br/>
          用户姓名：<input type="text" name="username"><br/>
          用户密码：<input type="password" name="userpwd"><br/>
-         机构类型：<select name="orgType">
+         机构类型：<select name="orgtype">
          <option value =></option>
          <option value ="0">外汇局</option>
          <option value ="1">银行</option>

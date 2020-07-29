@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     User user=(User)session.getAttribute("user");
-    String usercode=user.getUserCode();
+    String usercode=user.getUsercode();
 %>
 <html>
 <head>

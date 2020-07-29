@@ -26,11 +26,11 @@ public class UserDAO {
             con= jdbcUtil.getConnection();
             String sql="insert into t_user(usercode,username,userpwd,orgtype,regdate) values(?,?,?,?,?)";
             ps= con.prepareStatement(sql);
-            ps.setString(1,user.getUserCode());
-            ps.setString(2, user.getUserName());
-            ps.setString(3, user.getUserPwd());
-            ps.setString(4, user.getOrgType());
-            ps.setString(5, user.getRegDate());
+            ps.setString(1,user.getUsercode());
+            ps.setString(2, user.getUsername());
+            ps.setString(3, user.getUserpwd());
+            ps.setString(4, user.getOrgtype());
+            ps.setString(5, user.getRegdate());
             res=ps.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -83,9 +83,9 @@ public class UserDAO {
             //where子句先查第一个条件（mysql）
             String sql="select * from t_user where usercode=? and userpwd=? and orgtype=?";
             ps= con.prepareStatement(sql);
-            ps.setString(1, user.getUserCode());
-            ps.setString(2, user.getUserPwd());
-            ps.setString(3, user.getOrgType());
+            ps.setString(1, user.getUsercode());
+            ps.setString(2, user.getUserpwd());
+            ps.setString(3, user.getOrgtype());
             rs=ps.executeQuery();
             while (rs.next()){
                 res++;
@@ -116,9 +116,9 @@ public class UserDAO {
             rs=ps.executeQuery();
             while (rs.next()){
                 User user=new User();
-                user.setUserCode(rs.getString("usercode"));
-                user.setUserName(rs.getString("username"));
-                user.setOrgType(rs.getString("orgtype"));
+                user.setUsercode(rs.getString("usercode"));
+                user.setUsername(rs.getString("username"));
+                user.setOrgtype(rs.getString("orgtype"));
                 bigList.add(user);
             }
 
@@ -150,9 +150,9 @@ public class UserDAO {
             rs= ps.executeQuery();
             while(rs.next()){
                 User user=new User();
-                user.setUserCode( rs.getString("usercode"));
-                user.setUserName( rs.getString("username"));
-                user.setOrgType( rs.getString("orgtype"));
+                user.setUsercode( rs.getString("usercode"));
+                user.setUsername( rs.getString("username"));
+                user.setOrgtype( rs.getString("orgtype"));
                 userList.add(user);
             }
         } catch (SQLException throwables) {
@@ -205,10 +205,10 @@ public class UserDAO {
             ps.setString(1,usercode);
             rs= ps.executeQuery();
             if(rs.next()){
-                user.setUserName(rs.getString("username"));
-                user.setUserPwd(rs.getString("userpwd"));
-                user.setOrgType(rs.getString("orgtype"));
-                user.setUserCode(rs.getString("usercode"));
+                user.setUsername(rs.getString("username"));
+                user.setUserpwd(rs.getString("userpwd"));
+                user.setOrgtype(rs.getString("orgtype"));
+                user.setUsercode(rs.getString("usercode"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -231,10 +231,10 @@ public class UserDAO {
             con= jdbcUtil.getConnection();
             String sql="update t_user set username=?,userpwd=?,orgtype=? where usercode=?";
             ps= con.prepareStatement(sql);
-            ps.setString(1, user.getUserName());
-            ps.setString(2, user.getUserPwd());
-            ps.setString(3, user.getOrgType());
-            ps.setString(4, user.getUserCode());
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getUserpwd());
+            ps.setString(3, user.getOrgtype());
+            ps.setString(4, user.getUsercode());
             res=ps.executeUpdate();
 
         } catch (SQLException throwables) {

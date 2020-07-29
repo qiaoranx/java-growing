@@ -13,19 +13,9 @@ import java.io.PrintWriter;
 
 public class InvSaveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
+//        request.setCharacterEncoding("utf-8");
         Investor inv=new Investor();
         WebUtil.makeRequestToObject(request,inv);
-//        Investor inv=new Investor(
-//            request.getParameter("invname"),
-//            request.getParameter("cty"),
-//            request.getParameter("orgcode"),
-//            request.getParameter("contactman"),
-//            request.getParameter("contacttel"),
-//            request.getParameter("email"),
-//            request.getParameter("remark"),
-//            request.getParameter("usercode")
-//        );
         InvDAO dao=new InvDAO();
        int res= dao.addInvestor(inv);
        if(res==1){
