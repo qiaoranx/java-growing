@@ -2,6 +2,7 @@ package com.company.controller;
 
 import com.company.dao.InvDAO;
 import com.company.entity.Investor;
+import com.company.util.WebUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +14,18 @@ import java.io.PrintWriter;
 public class InvSaveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-        Investor inv=new Investor(
-            request.getParameter("invname"),
-            request.getParameter("cty"),
-            request.getParameter("orgcode"),
-            request.getParameter("contactman"),
-            request.getParameter("contacttel"),
-            request.getParameter("email"),
-            request.getParameter("remark"),
-            request.getParameter("usercode")
-        );
+        Investor inv=new Investor();
+        WebUtil.makeRequestToObject(request,inv);
+//        Investor inv=new Investor(
+//            request.getParameter("invname"),
+//            request.getParameter("cty"),
+//            request.getParameter("orgcode"),
+//            request.getParameter("contactman"),
+//            request.getParameter("contacttel"),
+//            request.getParameter("email"),
+//            request.getParameter("remark"),
+//            request.getParameter("usercode")
+//        );
         InvDAO dao=new InvDAO();
        int res= dao.addInvestor(inv);
        if(res==1){
