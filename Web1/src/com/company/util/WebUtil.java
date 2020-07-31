@@ -16,7 +16,7 @@ public class WebUtil {
                   setMethod.invoke(obj,request.getParameter(fieldname));
                   setMethod.invoke(obj,request.getParameter(fieldname));
               } catch (Exception e) {
-                  e.printStackTrace();
+                 // e.printStackTrace();
               }
           }
     }
