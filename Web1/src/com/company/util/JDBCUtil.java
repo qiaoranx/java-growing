@@ -8,8 +8,7 @@ import java.util.Map;
 
 public class JDBCUtil {
     //工具类的构造方法都是私有的
-
-    public JDBCUtil() {
+    private JDBCUtil() {
 
     }
 
@@ -21,13 +20,19 @@ public class JDBCUtil {
         }
     }
 
+    public static ThreadLocal<Connection> threadLocal=new ThreadLocal<>();
 
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/egov?useSSL=false", "root", "976431");
+    public static Connection getConnection() throws SQLException {
+       Connection con= threadLocal.get();
+        if(con==null){
+            con= DriverManager.getConnection("jdbc:mysql://localhost:3306/egov?useSSL=false", "root", "976431");
+            threadLocal.set(con);
+        }
+            return con;
     }
 
     //重载
-    public Connection getConnection(HttpServletRequest req) throws SQLException {
+    public static Connection getConnection(HttpServletRequest req) throws SQLException {
         Connection con=null;
         ServletContext application=req.getServletContext();
         Map map=(Map)application.getAttribute("key1");
@@ -42,26 +47,17 @@ public class JDBCUtil {
         return con;
     }
 
-    public  void close(Connection conn, Statement ps){
-        if (ps!=null){
-            try {
-                ps.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-
-        if (conn!=null){
-            try {
-                conn.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-    }
-
     //重载
-    public  void close(Connection conn, Statement ps,HttpServletRequest req ){
+    public static void close(Connection conn, Statement ps,ResultSet rs,HttpServletRequest req ){
+
+        if (rs!=null){
+            try {
+                rs.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+
         if (ps!=null){
             try {
                 ps.close();
@@ -73,11 +69,9 @@ public class JDBCUtil {
         ServletContext application=req.getServletContext();
         Map map=(Map)application.getAttribute("key1");
         map.put(conn,true);
-
-
     }
 
-    public  void close(Connection conn, Statement ps,ResultSet rs){
+    public static void close(Connection conn, Statement ps,ResultSet rs){
 
         if (rs!=null){
             try {
@@ -98,11 +92,10 @@ public class JDBCUtil {
         if (conn!=null){
             try {
                 conn.close();
+                threadLocal.remove();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
     }
-
-
 }

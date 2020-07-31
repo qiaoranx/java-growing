@@ -11,19 +11,17 @@ import java.util.List;
 
 public class UserDAO {
 
-    private JDBCUtil jdbcUtil=new JDBCUtil();
-
     /**
      * 添加用户
      * @param user
      * @return
      */
-    public int addUser(User user){
+    public int addUser(User user)  {
         Connection con=null;
         PreparedStatement ps=null;
         int res=0;
         try {
-            con= jdbcUtil.getConnection();
+            con= JDBCUtil.getConnection();
             String sql="insert into t_user(usercode,username,userpwd,orgtype,regdate) values(?,?,?,?,?)";
             ps= con.prepareStatement(sql);
             ps.setString(1,user.getUsercode());
@@ -32,11 +30,13 @@ public class UserDAO {
             ps.setString(4, user.getOrgtype());
             ps.setString(5, user.getRegdate());
             res=ps.executeUpdate();
+            JDBCUtil.close(null,ps,null);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            throw new RuntimeException("添加失败");
         }finally {
-            jdbcUtil.close(con,ps);
+            JDBCUtil.close(null,ps,null);
         }
         return res;
     }
@@ -52,18 +52,18 @@ public class UserDAO {
         ResultSet rs=null;
         int res=0;
         try {
-           con= jdbcUtil.getConnection();
-           String sql="select * from t_user where usercode=?";
-           ps= con.prepareStatement(sql);
-           ps.setString(1,usercode);
-           rs= ps.executeQuery();
-           while (rs.next()){
-               res++;
-           }
+            con= JDBCUtil.getConnection();
+            String sql="select * from t_user where usercode=?";
+            ps= con.prepareStatement(sql);
+            ps.setString(1,usercode);
+            rs= ps.executeQuery();
+            while (rs.next()){
+                res++;
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps,rs);
+            JDBCUtil.close(null,ps,rs);
         }
         return res;
     }
@@ -79,7 +79,7 @@ public class UserDAO {
         ResultSet rs=null;
         int res=0;
         try {
-            con= jdbcUtil.getConnection();
+            con= JDBCUtil.getConnection();
             //where子句先查第一个条件（mysql）
             String sql="select * from t_user where usercode=? and userpwd=? and orgtype=?";
             ps= con.prepareStatement(sql);
@@ -94,7 +94,7 @@ public class UserDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps,rs);
+            JDBCUtil.close(con,ps,rs);
         }
         return res;
     }
@@ -110,7 +110,7 @@ public class UserDAO {
         ResultSet rs=null;
         List<User> bigList=new ArrayList<User>();
         try {
-            con= jdbcUtil.getConnection();
+            con= JDBCUtil.getConnection();
             String sql="select usercode,username,orgtype from t_user order by regdate desc";
             ps= con.prepareStatement(sql);
             rs=ps.executeQuery();
@@ -125,7 +125,7 @@ public class UserDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps,rs);
+            JDBCUtil.close(con,ps,rs);
         }
         return bigList;
     }
@@ -142,7 +142,7 @@ public class UserDAO {
         ResultSet rs=null;
         List<User> userList=new ArrayList<>();
         try {
-            con=jdbcUtil.getConnection();
+            con=JDBCUtil.getConnection();
             String sql="select * from t_user order by regdate desc limit ? offset ?";
             ps=con.prepareStatement(sql);
             ps.setInt(1,pagesize);
@@ -158,7 +158,7 @@ public class UserDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps,rs);
+            JDBCUtil.close(con,ps,rs);
         }
         return userList;
     }
@@ -173,7 +173,7 @@ public class UserDAO {
         ResultSet rs=null;
         int totalcount=0;
         try {
-            con=jdbcUtil.getConnection();
+            con=JDBCUtil.getConnection();
             String sql="select count(*) as totalcount from t_user";
             ps=con.prepareStatement(sql);
             rs= ps.executeQuery();
@@ -183,7 +183,7 @@ public class UserDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps,rs);
+            JDBCUtil.close(con,ps,rs);
         }
         return totalcount;
     }
@@ -200,7 +200,7 @@ public class UserDAO {
         User user=new User();
         String sql="select * from t_user where usercode=?";
         try {
-            con=jdbcUtil.getConnection();
+            con=JDBCUtil.getConnection();
             ps= con.prepareStatement(sql);
             ps.setString(1,usercode);
             rs= ps.executeQuery();
@@ -213,9 +213,9 @@ public class UserDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps,rs);
+            JDBCUtil.close(con,ps,rs);
         }
-           return user;
+        return user;
     }
 
     /**
@@ -228,7 +228,7 @@ public class UserDAO {
         PreparedStatement ps=null;
         int res=0;
         try {
-            con= jdbcUtil.getConnection();
+            con= JDBCUtil.getConnection();
             String sql="update t_user set username=?,userpwd=?,orgtype=? where usercode=?";
             ps= con.prepareStatement(sql);
             ps.setString(1, user.getUsername());
@@ -240,7 +240,7 @@ public class UserDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps);
+            JDBCUtil.close(con,ps,null);
         }
         return res;
     }
@@ -256,7 +256,7 @@ public class UserDAO {
         int res=0;
         try {
 
-            con= jdbcUtil.getConnection();
+            con= JDBCUtil.getConnection();
             con.setAutoCommit(false);
             con.setTransactionIsolation(2);
             //开始事务
@@ -286,7 +286,7 @@ public class UserDAO {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            jdbcUtil.close(con,ps);
+            JDBCUtil.close(con,ps,null);
         }
         return res;
     }

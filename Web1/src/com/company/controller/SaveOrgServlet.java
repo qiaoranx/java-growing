@@ -16,6 +16,7 @@ import java.util.List;
 
 public class SaveOrgServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //数据输入
         Enterprise enp=new Enterprise();
         WebUtil.makeRequestToObject(request,enp);
         enp.setOutregcap(new BigDecimal(request.getParameter("outregcap")));
@@ -23,6 +24,7 @@ public class SaveOrgServlet extends HttpServlet {
         String[] invregnums=request.getParameterValues("invregnum");
         String[] regmoneyouts=request.getParameterValues("regmoneyout");
         String[] percents=request.getParameterValues("percent");
+        //service代码
         List<OrgInv> orgInvList=new ArrayList<>();
         for (int i = 0; i <invregnums.length ; i++) {
             OrgInv orgInv=new OrgInv();

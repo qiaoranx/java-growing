@@ -13,8 +13,6 @@ import java.util.List;
 
 public class InvDAO {
 
-    private JDBCUtil jdbcUtil=new JDBCUtil();
-
     /**
      * 添加投资人
      * @param inv
@@ -27,7 +25,7 @@ public class InvDAO {
         String sql="insert into t_inv(invname,cty,orgcode,contactman,contacttel,email,remark,usercode,regdate) " +
                 "values(?,?,?,?,?,?,?,?,?)";
         try {
-            con=jdbcUtil.getConnection();
+            con=JDBCUtil.getConnection();
             ps= con.prepareStatement(sql);
             ps.setString(1,inv.getInvname());
             ps.setString(2,inv.getCty());
@@ -42,7 +40,7 @@ public class InvDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps);
+            JDBCUtil.close(con,ps,null);
         }
         return res;
     }
@@ -79,7 +77,7 @@ public class InvDAO {
         sql.append("order by i.regdate desc");
 
         try {
-            con=jdbcUtil.getConnection();
+            con=JDBCUtil.getConnection();
             ps= con.prepareStatement(sql.toString());
             int i=1;
             for (String s : paraLst) {
@@ -99,7 +97,7 @@ public class InvDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps,rs);
+            JDBCUtil.close(con,ps,rs);
         }
         return lst;
     }
@@ -111,7 +109,7 @@ public class InvDAO {
         Investor inv=new Investor();
         String sql="select * from t_inv where invregnum=?";
         try {
-            con=jdbcUtil.getConnection();
+            con=JDBCUtil.getConnection();
             ps=con.prepareStatement(sql);
             ps.setString(1,invregnum);
             rs= ps.executeQuery();
@@ -127,7 +125,7 @@ public class InvDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            jdbcUtil.close(con,ps,rs);
+            JDBCUtil.close(con,ps,rs);
         }
         return inv;
     }

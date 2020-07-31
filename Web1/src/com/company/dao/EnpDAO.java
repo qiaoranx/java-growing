@@ -6,11 +6,11 @@ import com.company.util.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class EnpDAO {
-    JDBCUtil jdbcUtil=new JDBCUtil();
 
    public int[] AddEnp(Enterprise enp, List<OrgInv> lst){
        Connection con=null;
@@ -20,7 +20,7 @@ public class EnpDAO {
        int size=0;
        try {
 
-           con= jdbcUtil.getConnection();
+           con= JDBCUtil.getConnection();
            con.setAutoCommit(false);
            con.setTransactionIsolation(2);
            String sql="insert into t_enterprise(orgcode,regno,cnname,enname,contactman,contacttel,outregcap,foreiregmoney," +
@@ -57,7 +57,7 @@ public class EnpDAO {
                size++;
            }
            con.commit();
-//提交事务
+       //提交事务
        } catch (SQLException throwables) {
            try {
                con.rollback();
@@ -71,8 +71,30 @@ public class EnpDAO {
            } catch (SQLException throwables) {
                throwables.printStackTrace();
            }
-           jdbcUtil.close(con,ps);
+           JDBCUtil.close(con,ps,null);
        }
        return res2;
    }
+
+    public int queryOrgcode(String orgcode){
+        Connection con=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        int res=0;
+        try {
+            con= JDBCUtil.getConnection();
+            String sql="select * from t_enterprise where orgcode=?";
+            ps= con.prepareStatement(sql);
+            ps.setString(1,orgcode);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                res++;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            JDBCUtil.close(con,ps,rs);
+        }
+        return res;
+    }
 }
