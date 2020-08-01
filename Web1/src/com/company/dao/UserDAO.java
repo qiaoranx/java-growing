@@ -30,40 +30,11 @@ public class UserDAO {
             ps.setString(4, user.getOrgtype());
             ps.setString(5, user.getRegdate());
             res=ps.executeUpdate();
-            JDBCUtil.close(null,ps,null);
-
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
             throwables.printStackTrace();
             throw new RuntimeException("添加失败");
         }finally {
             JDBCUtil.close(null,ps,null);
-        }
-        return res;
-    }
-
-    /**
-     * 判断用户代码唯一性
-     * @param usercode
-     * @return
-     */
-    public int verifyUsercode(String usercode){
-        Connection con=null;
-        PreparedStatement ps=null;
-        ResultSet rs=null;
-        int res=0;
-        try {
-            con= JDBCUtil.getConnection();
-            String sql="select * from t_user where usercode=?";
-            ps= con.prepareStatement(sql);
-            ps.setString(1,usercode);
-            rs= ps.executeQuery();
-            while (rs.next()){
-                res++;
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }finally {
-            JDBCUtil.close(null,ps,rs);
         }
         return res;
     }
@@ -213,7 +184,7 @@ public class UserDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            JDBCUtil.close(con,ps,rs);
+            JDBCUtil.close(null,ps,rs);
         }
         return user;
     }

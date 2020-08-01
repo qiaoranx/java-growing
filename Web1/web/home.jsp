@@ -13,11 +13,10 @@
         <frame id="header" name="header"  src="home/head.jsp"/>
         <frameset cols="14%,*">
             <frame id="nav" name="nav"  src="home/nav.jsp"/>
-            <frame id="section" name="section" src="homePage.jpg"/>
+            <frame id="section" name="section" src="img/homeImg.png"/>
         </frameset>
     </frameset>
 </head>
 <body>
-
 </body>
 </html>

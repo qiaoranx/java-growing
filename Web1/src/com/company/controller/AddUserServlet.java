@@ -28,7 +28,11 @@ public class AddUserServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         if(res==1){
             request.getRequestDispatcher("/pageQuery").forward(request, response);
-        } else {
+        } else if(res==-1){
+            request.setAttribute("addError", "用户代码已存在");
+            request.getRequestDispatcher("/addUser.jsp").forward(request, response);
+        }
+        else {
             request.setAttribute("addError", "添加失败");
             request.getRequestDispatcher("/addUser.jsp").forward(request, response);
         }
@@ -37,7 +41,11 @@ public class AddUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userCode=request.getParameter("usercode");
         UserDAO dao =new UserDAO();
-        int result=dao.verifyUsercode(userCode);
+        User u=dao.selectUser(userCode);
+        int result=0;
+        if(u.getUsercode()!=null){
+            result=-1;
+        }
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out=response.getWriter();
         if(result!=0){

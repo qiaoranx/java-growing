@@ -21,13 +21,13 @@ public class UserService {
             con.setAutoCommit(false);
             con.setTransactionIsolation(2);
             User u=dao.selectUser(user.getUsercode());
-            if(u!=null){
+            if(u.getUsercode()!=null){
                 res=-1;
                 return res;
             }
             res = dao.addUser(user);
             con.commit();
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
             try {
                 con.rollback();
             } catch (SQLException e) {

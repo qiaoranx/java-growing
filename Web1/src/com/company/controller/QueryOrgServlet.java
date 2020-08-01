@@ -1,6 +1,6 @@
 package com.company.controller;
 
-import com.company.dao.EnpDAO;
+import com.company.dao.EnpDAOImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +15,7 @@ public class QueryOrgServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
            String orgcode=request.getParameter("orgcode");
-           EnpDAO dao=new EnpDAO();
+           EnpDAOImpl dao=new EnpDAOImpl();
           int res=dao.queryOrgcode(orgcode);
           if(res==1){
               request.setAttribute("out","组织机构代码已存在");

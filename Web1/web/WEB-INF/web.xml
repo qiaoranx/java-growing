@@ -118,6 +118,8 @@
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
         <url-pattern>/*</url-pattern>
+        <url-pattern>*.jsp</url-pattern>
+        <url-pattern>*.png</url-pattern>
     </filter-mapping>
 <!--filter-mapping 顺序决定了filter的优先级-->
    <filter-mapping>

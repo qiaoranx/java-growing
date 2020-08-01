@@ -20,7 +20,7 @@ public class JDBCUtil {
         }
     }
 
-    public static ThreadLocal<Connection> threadLocal=new ThreadLocal<>();
+    private static ThreadLocal<Connection> threadLocal=new ThreadLocal<>();
 
     public static Connection getConnection() throws SQLException {
        Connection con= threadLocal.get();

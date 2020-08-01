@@ -12,14 +12,12 @@ import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setCharacterEncoding("utf-8");
         String userCode=request.getParameter("loginName");
         String userPwd=request.getParameter("loginPwd");
         String orgType=request.getParameter("orgType");
         User user=new User(userCode,"",userPwd,orgType);
         UserDAO dao =new UserDAO();
         int res= dao.login(user);
-//        response.setContentType("text/html;charset=utf-8");
         if(res==1){
             //确认用户存在再创建session,保证数据合法性
             User userSession=dao.selectUser(userCode);
