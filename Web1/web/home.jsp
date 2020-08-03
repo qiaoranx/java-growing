@@ -11,7 +11,7 @@
     <title>主页</title>
     <frameset rows="7%,*">
         <frame id="header" name="header"  src="home/head.jsp"/>
-        <frameset cols="14%,*">
+        <frameset cols="18%,*">
             <frame id="nav" name="nav"  src="home/nav.jsp"/>
             <frame id="section" name="section" src="img/homeImg.png"/>
         </frameset>

@@ -17,9 +17,18 @@ public class Enterprise {
     private String regtype;
     private String usercode;
     private String regdate;
+    private String username;
 
     public Enterprise() {
         this.regdate= PropertyUtil.timeUtil("yyyy-MM-dd");
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getOrgcode() {

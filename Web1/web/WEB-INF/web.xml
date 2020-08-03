@@ -55,6 +55,22 @@
         <servlet-name>SaveOrgServlet</servlet-name>
         <servlet-class>com.company.controller.SaveOrgServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddAuthServlet</servlet-name>
+        <servlet-class>com.company.controller.AddAuthServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QueryPieServlet</servlet-name>
+        <servlet-class>com.company.controller.QueryPieServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QueryPieServlet</servlet-name>
+        <url-pattern>/queryPie</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAuthServlet</servlet-name>
+        <url-pattern>/addAuth</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SaveOrgServlet</servlet-name>
         <url-pattern>/saveOrg</url-pattern>

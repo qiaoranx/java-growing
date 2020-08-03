@@ -27,6 +27,13 @@
             </li>
         </ol>
     </li>
+    <li><input type="button" value="核准管理" id="authManager"><br/><br/>
+        <ol id="accountManager" style="visibility: hidden">
+            <li>
+                <a target="section" href="http://localhost:80/EGOV/auth/goAddAuth.jsp">资本金账户核准录入</a>
+            </li>
+        </ol>
+    </li><br/>
     <li><input type="button" value="系统管理" id="sysManager"><br/>
         <ol id="userManager" style="visibility: hidden">
             <li>
@@ -38,6 +45,17 @@
 
 <script type="text/javascript">
     window.onload=function(){
+
+        var isVisAuth=false;
+        document.getElementById("authManager").onclick=function(){
+            isVisAuth=!isVisAuth;
+            if(isVisAuth){
+                document.getElementById("accountManager").style.visibility="visible";
+            }else{
+                document.getElementById("accountManager").style.visibility="hidden";
+            }
+        }
+
         var isVisSys=false;
         document.getElementById("sysManager").onclick=function(){
             isVisSys=!isVisSys;

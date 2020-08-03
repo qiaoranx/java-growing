@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EnpDAOImpl implements EnpDAO {
@@ -78,9 +79,64 @@ public class EnpDAOImpl implements EnpDAO {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            throw new RuntimeException("查询组织机构代码失败");
         }finally {
-            JDBCUtil.close(con,ps,rs);
+            JDBCUtil.close(null,ps,rs);
         }
         return res;
+    }
+
+    public List<Enterprise> queryOrg(){
+        Connection con=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        List<Enterprise> lst=new ArrayList<>();
+        try {
+            con= JDBCUtil.getConnection();
+            String sql="select e.orgcode,e.cnname,e.regdate,u.username from t_enterprise e join t_user u on e.usercode=u.usercode";
+            ps= con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                Enterprise enp=new Enterprise();
+                enp.setOrgcode(rs.getString("orgcode"));
+                enp.setCnname(rs.getString("cnname"));
+                enp.setRegdate(rs.getString("regdate"));
+//                enp.setRegtype(rs.getString("regtype"));
+                enp.setUsername(rs.getString("username"));
+                lst.add(enp);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            throw new RuntimeException("查询企业信息失败");
+        }finally {
+            JDBCUtil.close(null,ps,rs);
+        }
+        return lst;
+    }
+
+    @Override
+    public String queryPie(String orgcode) {
+        Connection con=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        StringBuilder str=new StringBuilder();
+        try {
+            con= JDBCUtil.getConnection();
+            String sql="select o.regmoneyout,i.invname from t_orginv o join t_inv i on o.invregnum=i.invregnum where o.orgcode=?";
+            ps= con.prepareStatement(sql);
+            ps.setString(1,orgcode);
+            rs=ps.executeQuery();
+            while (rs.next()){
+               str.append(rs.getString("invname")+","+rs.getString("regmoneyout")+";");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            throw new RuntimeException("查询企业投资明细失败");
+        }finally {
+            JDBCUtil.close(null,ps,rs);
+        }
+        str.deleteCharAt(str.length()-1);
+        System.out.println(str.toString());
+        return str.toString();
     }
 }

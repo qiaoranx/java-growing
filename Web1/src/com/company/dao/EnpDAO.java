@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface EnpDAO {
     int[] AddEnp(Enterprise enp, List<OrgInv> lst);
+     int queryOrgcode(String orgcode);
+     List<Enterprise> queryOrg();
+     String queryPie(String orgcode);
 }

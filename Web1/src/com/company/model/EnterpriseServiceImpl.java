@@ -12,6 +12,94 @@ import java.util.List;
 
 public class EnterpriseServiceImpl implements EnterpriseService {
     private static EnpDAO enpDAO=new EnpDAOImpl();
+
+    @Override
+    public String queryPie(String orgcode) {
+        Connection con=null;
+        String str=null;
+        try {
+            con= JDBCUtil.getConnection();
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(2);
+            str=enpDAO.queryPie(orgcode);
+            con.commit();
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+            try {
+                con.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }finally {
+            try {
+                con.setAutoCommit(true);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            JDBCUtil.close(con,null,null);
+        }
+        return str;
+
+    }
+
+    @Override
+    public List<Enterprise> queryOrg() {
+        Connection con=null;
+        List<Enterprise> lst=null;
+        try {
+            con= JDBCUtil.getConnection();
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(2);
+            lst=enpDAO.queryOrg();
+            con.commit();
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+            try {
+                con.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }finally {
+            try {
+                con.setAutoCommit(true);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            JDBCUtil.close(con,null,null);
+        }
+        return lst;
+
+    }
+
+    @Override
+    public int queryOrgcode(String orgcode) {
+        Connection con=null;
+        int res=0;
+        try {
+            con= JDBCUtil.getConnection();
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(2);
+            res=enpDAO.queryOrgcode(orgcode);
+            con.commit();
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+            try {
+                con.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }finally {
+            try {
+                con.setAutoCommit(true);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            JDBCUtil.close(con,null,null);
+        }
+        return res;
+
+    }
+
     @Override
     public int[] save(Enterprise en, List<OrgInv> lst) {
         Connection con=null;

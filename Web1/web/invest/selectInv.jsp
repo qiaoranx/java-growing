@@ -16,7 +16,6 @@
     <title>Title</title>
 </head>
 <body>
-<img>
 <form  name="queryForm">
     <%--三元运算解决查询后丢失搜索条件的问题--%>
     投资人登记编号：<input type="text" id="invRegNum" name="invregnum" value=<%=request.getParameter("invregnum")==null?"":request.getParameter("invregnum")%>><br/>
