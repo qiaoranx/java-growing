@@ -72,14 +72,14 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public int queryOrgcode(String orgcode) {
+    public Enterprise queryOrgcode(String orgcode) {
         Connection con=null;
-        int res=0;
+        Enterprise enp=new Enterprise();
         try {
             con= JDBCUtil.getConnection();
             con.setAutoCommit(false);
             con.setTransactionIsolation(2);
-            res=enpDAO.queryOrgcode(orgcode);
+            enp=enpDAO.queryOrgcode(orgcode);
             con.commit();
         } catch (Exception throwables) {
             throwables.printStackTrace();
@@ -96,7 +96,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             }
             JDBCUtil.close(con,null,null);
         }
-        return res;
+        return enp;
 
     }
 

@@ -27,8 +27,8 @@ public class QueryOrgServlet extends HttpServlet {
                request.setAttribute("orgLst",lst);
                request.getRequestDispatcher("/auth/selectOrg.jsp").forward(request,response);
            }else{
-               int res= enterpriseService.queryOrgcode(orgcode);
-               if(res==1){
+               Enterprise enp= enterpriseService.queryOrgcode(orgcode);
+               if(enp.getCnname()!=null){
                    request.setAttribute("out","组织机构代码已存在");
                    request.getRequestDispatcher("/invest/enterprise.jsp").forward(request,response);
                }else{

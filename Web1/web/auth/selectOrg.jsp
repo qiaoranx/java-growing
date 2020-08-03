@@ -61,9 +61,6 @@
     }
 
     function displayPieCharts(orgcode) {
-        // window.location.href = "http://localhost:80/EGOV/queryPie?orgcode="+orgcode;
-
-
         //
         var res=[];
         var xmlHttp=new XMLHttpRequest();
@@ -89,9 +86,6 @@
 
         document.getElementById("pie").style.visibility="visible";
         var myChart = echarts.init(document.getElementById("pie"));
-        // var options=myChart.getOption();
-        // options.series[0].data=res;
-        // myChart.setOption(options);
         myChart.setOption({
             series : [
                 {

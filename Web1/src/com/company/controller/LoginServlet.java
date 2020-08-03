@@ -23,6 +23,7 @@ public class LoginServlet extends HttpServlet {
             User userSession=dao.selectUser(userCode);
             HttpSession session=request.getSession(true);
             session.setAttribute("user",userSession);
+            response.setContentType("image/png");
             response.sendRedirect("/EGOV/home.jsp");
         }else{
             request.setAttribute("loginError","登录失败");

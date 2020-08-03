@@ -11,10 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/EGOV/addAuth" target="section">
-    组织机构代码：<input id="orgcode" name="orgcode" type="text" readonly><br/>
+<form>
+    组织机构代码：<input id="orgcode" type="text" readonly><br/>
     <input type="button" onclick="queryOrg()" value="查询">
-    <input type="submit" value="确定">
+    <input type="button" onclick="goAddAuth()" value="确定">
 </form>
 
 </body>
@@ -25,6 +25,15 @@
     }
 
     function getOrgcode(orgcode) {
-         document.getElementById("orgcode").value=orgcode;
+        document.getElementById("orgcode").value=orgcode;
     }
+
+   function goAddAuth(){
+      var orgcode= document.getElementById("orgcode").value;
+        if(orgcode==""){
+            return;
+        }
+        window.location.href="/EGOV/addAuth?orgcode="+orgcode;
+        window.location.href.target="section";
+   }
 </script>

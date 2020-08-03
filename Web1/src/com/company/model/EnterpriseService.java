@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface EnterpriseService {
     int[] save(Enterprise en, List<OrgInv> lst);
-    int queryOrgcode(String orgcode);
+    Enterprise queryOrgcode(String orgcode);
     List<Enterprise> queryOrg();
     String queryPie(String orgcode);
 }
