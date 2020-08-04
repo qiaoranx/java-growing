@@ -63,6 +63,14 @@
         <servlet-name>QueryPieServlet</servlet-name>
         <servlet-class>com.company.controller.QueryPieServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveAuthServlet</servlet-name>
+        <servlet-class>com.company.controller.SaveAuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SaveAuthServlet</servlet-name>
+        <url-pattern>/saveAuth</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QueryPieServlet</servlet-name>
         <url-pattern>/queryPie</url-pattern>
