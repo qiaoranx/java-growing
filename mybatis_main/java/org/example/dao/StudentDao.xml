@@ -8,4 +8,8 @@
        select * from student order by id
     </select>
 
+    <update id="insertStudent" >
+       insert into student values(#{id},#{name},#{email},#{age})
+    </update>
+
 </mapper>
