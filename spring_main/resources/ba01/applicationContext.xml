@@ -4,7 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="myStudent" class="org.example.ba01.Student">
-    <property name="age" value="20"/>
-    <property name="name" value="qiao"/>
+        <constructor-arg index="0" value="qiao"/>
+        <constructor-arg index="1" value="20"/>
+        <constructor-arg index="2" ref="mySchool"/>
+<!--        <property name="age" value="20"/>-->
+<!--        <property name="name" value="qiao"/>-->
+<!--        <property name="school" ref="mySchool"/>-->
+    </bean>
+    <bean id="mySchool" class="org.example.ba01.School">
+        <property name="name" value="软通"/>
+        <property name="address" value="北京"/>
     </bean>
 </beans>
