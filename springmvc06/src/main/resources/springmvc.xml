@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<!--声明组件扫描器-->
+    <context:component-scan base-package="controller"/>
+<!--声明视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+<!--注解驱动，将对象转成json，会自动创建HttpMessageConverter接口的7个实现类，默认使用jackson转化json
+    还可以解决默认的controller和中央调度器的冲突-->
+    <mvc:annotation-driven/>
+      <!-- 第一种处理静态资源的方法,创建DefaultServletHttpRequestHandler(相当于controller),
+      可以把接收的请求转发给tomcat的DefaultServlet
+      内部原理也是调用request.getdispatcher.forward()-->
+    <mvc:default-servlet-handler/>
+</beans>
